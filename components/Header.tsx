@@ -16,10 +16,10 @@ export async function Header() {
             <UserButton afterSignOutUrl="/" />
           ) : (
             <>
-              <SignInButton mode="modal">
+              <SignInButton mode="redirect">
                 <Button variant="outline">Sign in</Button>
               </SignInButton>
-              <SignUpButton mode="modal">
+              <SignUpButton mode="redirect">
                 <Button>Sign up</Button>
               </SignUpButton>
             </>
