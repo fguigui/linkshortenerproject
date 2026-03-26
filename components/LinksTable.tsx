@@ -103,7 +103,7 @@ export function LinksTable({
       {/* Table Container with Fixed Height */}
       <div className="overflow-y-auto rounded-lg border border-slate-700 h-[calc(100vh-420px)]">
         <table className="w-full">
-          <thead className="bg-slate-800 border-b border-slate-700">
+          <thead className="bg-slate-800 border-b border-slate-700 sticky top-0 z-10">
             <tr>
               <th className="px-6 py-3 text-left">
                 <SortHeader field="id" label="ID" {...SortHeaderProps} />
