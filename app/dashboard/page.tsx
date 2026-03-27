@@ -1,4 +1,5 @@
-﻿import { auth } from '@clerk/nextjs/server';
+﻿import Link from 'next/link';
+import { auth } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 import { LinksTable } from '@/components/LinksTable';
 import { SuccessToast } from '@/components/SuccessToast';
@@ -45,11 +46,12 @@ export default async function DashboardPage({
         </div>
 
         <div>
-          <a href="/dashboard/create">
-            <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
-              + Create New Link
-            </button>
-          </a>
+          <Link
+            href="/dashboard/create"
+            className="inline-block bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors"
+          >
+            + Create New Link
+          </Link>
         </div>
 
         <LinksTable

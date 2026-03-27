@@ -21,7 +21,7 @@ Before writing, modifying, or reviewing ANY code in this project, you MUST:
 
 - **Framework**: Next.js 16.2.1 with App Router
 - **Language**: TypeScript 5
-- **Database**: PostgreSQL via Neon + Drizzle ORM
+- **Database**: PostgreSQL + Drizzle ORM
 - **Styling**: Tailwind CSS 4 + shadcn/ui
 - **Linting**: ESLint 9
 
@@ -47,7 +47,7 @@ Before writing, modifying, or reviewing ANY code in this project, you MUST:
 
 ## Key Files to Know
 
-- **`drizzle.config.ts`** - Database config (Neon connection)
+- **`drizzle.config.ts`** - Database config (localhost connection)
 - **`next.config.ts`** - Next.js configuration
 - **`postcss.config.mjs`** - Tailwind CSS 4 PostCSS configuration
 - **`tsconfig.json`** - TypeScript strict mode enabled
@@ -71,3 +71,5 @@ Agent instructions are organized by domain in the `.github/instructions/` direct
 | TypeScript Standards | `.github/instructions/typescript-standards.instructions.md` |
 | Next.js Conventions | `.github/instructions/nextjs-conventions.instructions.md` |
 | Quick Reference | `.github/instructions/quick-reference.instructions.md` |
+| Server Actions | `.github/instructions/server-actions.instructions.md` |
+| Server Action Validation | `.github/instructions/server-actions-validation.instructions.md` |

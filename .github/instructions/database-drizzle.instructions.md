@@ -7,7 +7,7 @@ description: "Use when: designing database schema, writing queries, managing mig
 
 ## Technology Stack
 
-- **Database**: PostgreSQL (hosted on Neon)
+- **Database**: PostgreSQL (local)
 - **ORM**: Drizzle ORM ^0.45.1
 - **Migrations**: Drizzle Kit
 - **Schema Location**: `db/schema.ts`

@@ -1,16 +1,23 @@
 'use server';
 
-import { redirect } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 import { auth } from '@clerk/nextjs/server';
 import { createLink } from '@/data/links';
 
-export async function createLinkAction(url: string) {
-  const { userId } = await auth();
+type ActionResult = { success: true } | { success: false; error: string };
 
-  if (!userId) {
-    throw new Error('You must be logged in to create a link');
+export async function createLinkAction(url: string): Promise<ActionResult> {
+  try {
+    const { userId } = await auth();
+
+    if (!userId) {
+      return { success: false, error: 'You must be logged in to create a link' };
+    }
+
+    await createLink(userId, url);
+    revalidatePath('/dashboard');
+    return { success: true };
+  } catch {
+    return { success: false, error: 'Something went wrong' };
   }
-
-  await createLink(userId, url);
-  redirect('/dashboard?created=true');
 }

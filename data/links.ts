@@ -86,3 +86,13 @@ export async function createLink(userId: string, url: string) {
 
   return result[0];
 }
+
+export async function getLinkByShortCode(shortCode: string) {
+  const result = await db
+    .select()
+    .from(links)
+    .where(eq(links.shortCode, shortCode))
+    .limit(1);
+
+  return result[0] ?? null;
+}

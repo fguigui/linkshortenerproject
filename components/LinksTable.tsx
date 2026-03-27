@@ -6,6 +6,14 @@ import { Link as LinkIcon, ChevronUp, ChevronDown, Trash2, Pencil, Check, X } fr
 import type { Link } from '@/db/schema';
 import type { SortField, SortDirection } from '@/data/links';
 import { deleteLinkAction, updateLinkAction } from '@/app/dashboard/actions';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from '@/components/ui/dialog';
 
 interface SortHeaderProps {
   field: SortField;
@@ -57,6 +65,17 @@ export function LinksTable({
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editingUrl, setEditingUrl] = useState('');
   const [urlError, setUrlError] = useState('');
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [deleteLoading, setDeleteLoading] = useState(false);
+
+  const confirmDelete = async () => {
+    if (!deletingId) return;
+    setDeleteLoading(true);
+    await deleteLinkAction(deletingId);
+    setDeletingId(null);
+    setDeleteLoading(false);
+    router.refresh();
+  };
 
   const startEdit = (link: Link) => {
     setEditingId(link.id);
@@ -197,11 +216,7 @@ export function LinksTable({
                         <button
                           title="Delete link"
                           className="text-slate-400 hover:text-red-400 transition-colors"
-                          onClick={async () => {
-                            if (!window.confirm('Are you sure you want to delete this link?')) return;
-                            await deleteLinkAction(link.id);
-                            router.refresh();
-                          }}
+                          onClick={() => setDeletingId(link.id)}
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
@@ -221,6 +236,33 @@ export function LinksTable({
           </div>
         )}
       </div>
+
+      <Dialog open={!!deletingId} onOpenChange={(open) => { if (!open) setDeletingId(null); }}>
+        <DialogContent className="bg-slate-900 border-slate-700 text-white sm:max-w-sm">
+          <DialogHeader>
+            <DialogTitle className="text-white">Delete link</DialogTitle>
+            <DialogDescription className="text-slate-400">
+              Are you sure you want to delete this link? This action cannot be undone.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="flex gap-2 sm:justify-end">
+            <button
+              onClick={() => setDeletingId(null)}
+              disabled={deleteLoading}
+              className="px-4 py-2 rounded-lg border border-slate-600 text-white hover:bg-slate-800 disabled:opacity-50 transition-colors"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={confirmDelete}
+              disabled={deleteLoading}
+              className="px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white disabled:opacity-50 transition-colors"
+            >
+              {deleteLoading ? 'Deleting...' : 'Delete'}
+            </button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       {/* Pagination Info */}
       <div className="flex items-center justify-between text-sm text-slate-400">

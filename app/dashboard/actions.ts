@@ -4,24 +4,36 @@ import { revalidatePath } from 'next/cache';
 import { auth } from '@clerk/nextjs/server';
 import { deleteLink, updateLinkUrl } from '@/data/links';
 
-export async function deleteLinkAction(id: string) {
-  const { userId } = await auth();
+type ActionResult = { success: true } | { success: false; error: string };
 
-  if (!userId) {
-    throw new Error('You must be logged in to delete a link');
+export async function deleteLinkAction(id: string): Promise<ActionResult> {
+  try {
+    const { userId } = await auth();
+
+    if (!userId) {
+      return { success: false, error: 'You must be logged in to delete a link' };
+    }
+
+    await deleteLink(id, userId);
+    revalidatePath('/dashboard');
+    return { success: true };
+  } catch {
+    return { success: false, error: 'Something went wrong' };
   }
-
-  await deleteLink(id, userId);
-  revalidatePath('/dashboard');
 }
 
-export async function updateLinkAction(id: string, url: string) {
-  const { userId } = await auth();
+export async function updateLinkAction(id: string, url: string): Promise<ActionResult> {
+  try {
+    const { userId } = await auth();
 
-  if (!userId) {
-    throw new Error('You must be logged in to update a link');
+    if (!userId) {
+      return { success: false, error: 'You must be logged in to update a link' };
+    }
+
+    await updateLinkUrl(id, userId, url);
+    revalidatePath('/dashboard');
+    return { success: true };
+  } catch {
+    return { success: false, error: 'Something went wrong' };
   }
-
-  await updateLinkUrl(id, userId, url);
-  revalidatePath('/dashboard');
 }
