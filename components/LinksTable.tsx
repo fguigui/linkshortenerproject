@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Link as LinkIcon, ChevronUp, ChevronDown, Trash2, Pencil, Check, X } from 'lucide-react';
+import { toast } from 'sonner';
 import type { Link } from '@/db/schema';
 import type { SortField, SortDirection } from '@/data/links';
 import { deleteLinkAction, updateLinkAction } from '@/app/dashboard/actions';
@@ -71,7 +72,12 @@ export function LinksTable({
   const confirmDelete = async () => {
     if (!deletingId) return;
     setDeleteLoading(true);
-    await deleteLinkAction(deletingId);
+    const result = await deleteLinkAction(deletingId);
+    if (result.success) {
+      toast.success('Link deleted successfully');
+    } else {
+      toast.error(result.error);
+    }
     setDeletingId(null);
     setDeleteLoading(false);
     router.refresh();
@@ -92,9 +98,15 @@ export function LinksTable({
     if (!editingUrl.trim()) { setUrlError('URL is required'); return; }
     try { new URL(editingUrl); } catch { setUrlError('Invalid URL'); return; }
     setUrlError('');
-    await updateLinkAction(id, editingUrl);
-    setEditingId(null);
-    router.refresh();
+    const result = await updateLinkAction(id, editingUrl);
+    if (result.success) {
+      toast.success('Link updated successfully');
+      setEditingId(null);
+      router.refresh();
+      return;
+    }
+
+    toast.error(result.error);
   };
 
   const handleSort = (field: SortField) => {
