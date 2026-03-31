@@ -28,13 +28,11 @@ export default async function DashboardPage({
   const sortBy = (params.sort || 'createdAt') as SortField;
   const sortDirection = (params.direction || 'desc') as SortDirection;
 
-  const { data: links, total, totalPages } = await getUserLinks(
-    userId,
-    page,
-    20,
-    sortBy,
-    sortDirection
-  );
+  const {
+    data: links,
+    total,
+    totalPages,
+  } = await getUserLinks(userId, page, 20, sortBy, sortDirection);
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-black via-slate-900 to-black py-8 px-4">
@@ -42,7 +40,9 @@ export default async function DashboardPage({
       <div className="max-w-7xl mx-auto space-y-8">
         <div>
           <h1 className="text-4xl font-bold text-white mb-2">Your Links</h1>
-          <p className="text-slate-400">Manage and track your shortened links</p>
+          <p className="text-slate-400">
+            Manage and track your shortened links
+          </p>
         </div>
 
         <div>

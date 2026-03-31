@@ -37,7 +37,10 @@ export function CreateLinkForm({ onCancel, onSuccess }: CreateLinkFormProps) {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <label htmlFor="url" className="block text-sm font-medium text-white mb-2">
+        <label
+          htmlFor="url"
+          className="block text-sm font-medium text-white mb-2"
+        >
           URL
         </label>
         <input

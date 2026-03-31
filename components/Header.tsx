@@ -1,6 +1,6 @@
-import { auth } from "@clerk/nextjs/server";
-import { SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
-import { Button } from "@/components/ui/button";
+import { auth } from '@clerk/nextjs/server';
+import { SignInButton, SignUpButton, UserButton } from '@clerk/nextjs';
+import { Button } from '@/components/ui/button';
 
 export async function Header() {
   const { userId } = await auth();

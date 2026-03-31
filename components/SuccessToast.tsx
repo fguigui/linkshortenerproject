@@ -4,7 +4,13 @@ import { useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { toast } from 'sonner';
 
-export function SuccessToast({ message, param }: { message: string; param: string }) {
+export function SuccessToast({
+  message,
+  param,
+}: {
+  message: string;
+  param: string;
+}) {
   const searchParams = useSearchParams();
   const router = useRouter();
 

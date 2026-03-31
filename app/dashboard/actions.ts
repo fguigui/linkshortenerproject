@@ -11,7 +11,10 @@ export async function deleteLinkAction(id: string): Promise<ActionResult> {
     const { userId } = await auth();
 
     if (!userId) {
-      return { success: false, error: 'You must be logged in to delete a link' };
+      return {
+        success: false,
+        error: 'You must be logged in to delete a link',
+      };
     }
 
     await deleteLink(id, userId);
@@ -22,12 +25,18 @@ export async function deleteLinkAction(id: string): Promise<ActionResult> {
   }
 }
 
-export async function updateLinkAction(id: string, url: string): Promise<ActionResult> {
+export async function updateLinkAction(
+  id: string,
+  url: string,
+): Promise<ActionResult> {
   try {
     const { userId } = await auth();
 
     if (!userId) {
-      return { success: false, error: 'You must be logged in to update a link' };
+      return {
+        success: false,
+        error: 'You must be logged in to update a link',
+      };
     }
 
     await updateLinkUrl(id, userId, url);

@@ -11,7 +11,10 @@ export async function createLinkAction(url: string): Promise<ActionResult> {
     const { userId } = await auth();
 
     if (!userId) {
-      return { success: false, error: 'You must be logged in to create a link' };
+      return {
+        success: false,
+        error: 'You must be logged in to create a link',
+      };
     }
 
     await createLink(userId, url);

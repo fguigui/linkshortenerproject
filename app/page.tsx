@@ -2,15 +2,7 @@ import { auth } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 import { SignInButton, SignUpButton } from '@clerk/nextjs';
 import { Button } from '@/components/ui/button';
-import {
-  Link2,
-  Zap,
-  BarChart3,
-  Share2,
-  Clock,
-  Lock,
-  ArrowRight,
-} from 'lucide-react';
+import { Link2, Zap, Share2, Clock, Lock, ArrowRight } from 'lucide-react';
 
 export default async function HomePage() {
   const { userId } = await auth();
@@ -34,7 +26,8 @@ export default async function HomePage() {
               <span className="text-white">Amplify Your Reach</span>
             </h1>
             <p className="text-xl sm:text-2xl text-slate-400 max-w-2xl mx-auto">
-              Create short, memorable links and track their performance with detailed analytics.
+              Create short, memorable links and share them with the world in
+              seconds.
             </p>
           </div>
 
@@ -64,7 +57,7 @@ export default async function HomePage() {
             Powerful Features Built for You
           </h2>
           <p className="text-xl text-slate-400">
-            Everything you need to shorten, share, and track your links
+            Everything you need to shorten and share your links
           </p>
         </div>
 
@@ -78,24 +71,12 @@ export default async function HomePage() {
               Instant Link Shortening
             </h3>
             <p className="text-slate-400">
-              Convert long URLs into clean, shareable short links in seconds. No complicated setup required.
+              Convert long URLs into clean, shareable short links in seconds. No
+              complicated setup required.
             </p>
           </div>
 
           {/* Feature 2 */}
-          <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 hover:border-slate-600 transition-colors">
-            <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4">
-              <BarChart3 className="w-6 h-6 text-purple-400" />
-            </div>
-            <h3 className="text-xl font-semibold text-white mb-2">
-              Detailed Analytics
-            </h3>
-            <p className="text-slate-400">
-              Track clicks, visitors, and engagement metrics for each link. Understand your audience better.
-            </p>
-          </div>
-
-          {/* Feature 3 */}
           <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 hover:border-slate-600 transition-colors">
             <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mb-4">
               <Zap className="w-6 h-6 text-green-400" />
@@ -104,11 +85,12 @@ export default async function HomePage() {
               Lightning Fast
             </h3>
             <p className="text-slate-400">
-              Optimized infrastructure ensures your links redirect instantly, keeping bounce rates low.
+              Optimized infrastructure ensures your links redirect instantly,
+              keeping bounce rates low.
             </p>
           </div>
 
-          {/* Feature 4 */}
+          {/* Feature 3 */}
           <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 hover:border-slate-600 transition-colors">
             <div className="w-12 h-12 bg-pink-500/20 rounded-lg flex items-center justify-center mb-4">
               <Share2 className="w-6 h-6 text-pink-400" />
@@ -117,11 +99,12 @@ export default async function HomePage() {
               Easy Sharing
             </h3>
             <p className="text-slate-400">
-              Share your short links on social media, emails, and messages with a single click.
+              Share your short links on social media, emails, and messages with
+              a single click.
             </p>
           </div>
 
-          {/* Feature 5 */}
+          {/* Feature 4 */}
           <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 hover:border-slate-600 transition-colors">
             <div className="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center mb-4">
               <Clock className="w-6 h-6 text-cyan-400" />
@@ -130,11 +113,12 @@ export default async function HomePage() {
               Custom Expiration
             </h3>
             <p className="text-slate-400">
-              Set expiration dates for temporary links or keep them active indefinitely.
+              Set expiration dates for temporary links or keep them active
+              indefinitely.
             </p>
           </div>
 
-          {/* Feature 6 */}
+          {/* Feature 5 */}
           <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 hover:border-slate-600 transition-colors">
             <div className="w-12 h-12 bg-yellow-500/20 rounded-lg flex items-center justify-center mb-4">
               <Lock className="w-6 h-6 text-yellow-400" />
@@ -143,7 +127,7 @@ export default async function HomePage() {
               Secure & Private
             </h3>
             <p className="text-slate-400">
-              Your data is encrypted and protected. We never track personal information.
+              Your data is encrypted and protected. We respect your privacy.
             </p>
           </div>
         </div>
@@ -156,7 +140,8 @@ export default async function HomePage() {
             Ready to Get Started?
           </h2>
           <p className="text-lg text-blue-100">
-            Join thousands of users who are already shortening their links and tracking their success.
+            Join thousands of users who are already shortening and sharing their
+            links.
           </p>
           <SignUpButton mode="modal">
             <Button className="bg-white text-purple-600 hover:bg-slate-100 px-10 py-3 rounded-lg text-lg font-semibold">
@@ -172,7 +157,7 @@ export default async function HomePage() {
           <div className="text-center space-y-2">
             <h3 className="text-white font-semibold">Link Shortener</h3>
             <p className="text-slate-400">
-              Making link sharing simple, fast, and trackable.
+              Making link sharing simple, fast, and reliable.
             </p>
             <p className="text-slate-500 text-sm pt-4">
               © 2024 Link Shortener. All rights reserved.

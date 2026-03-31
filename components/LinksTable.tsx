@@ -2,7 +2,15 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Link as LinkIcon, ChevronUp, ChevronDown, Trash2, Pencil, Check, X } from 'lucide-react';
+import {
+  Link as LinkIcon,
+  ChevronUp,
+  ChevronDown,
+  Trash2,
+  Pencil,
+  Check,
+  X,
+} from 'lucide-react';
 import { toast } from 'sonner';
 import type { Link } from '@/db/schema';
 import type { SortField, SortDirection } from '@/data/links';
@@ -32,7 +40,8 @@ function SortHeader({
   onSort,
 }: SortHeaderProps) {
   const isActive = currentSort === field;
-  const Icon = isActive && currentSortDirection === 'desc' ? ChevronDown : ChevronUp;
+  const Icon =
+    isActive && currentSortDirection === 'desc' ? ChevronDown : ChevronUp;
 
   return (
     <button
@@ -95,8 +104,16 @@ export function LinksTable({
   };
 
   const saveEdit = async (id: string) => {
-    if (!editingUrl.trim()) { setUrlError('URL is required'); return; }
-    try { new URL(editingUrl); } catch { setUrlError('Invalid URL'); return; }
+    if (!editingUrl.trim()) {
+      setUrlError('URL is required');
+      return;
+    }
+    try {
+      new URL(editingUrl);
+    } catch {
+      setUrlError('Invalid URL');
+      return;
+    }
     setUrlError('');
     const result = await updateLinkAction(id, editingUrl);
     if (result.success) {
@@ -140,16 +157,28 @@ export function LinksTable({
                 <SortHeader field="id" label="ID" {...SortHeaderProps} />
               </th>
               <th className="px-6 py-3 text-left">
-                <SortHeader field="shortCode" label="Short Code" {...SortHeaderProps} />
+                <SortHeader
+                  field="shortCode"
+                  label="Short Code"
+                  {...SortHeaderProps}
+                />
               </th>
               <th className="px-6 py-3 text-left">
                 <SortHeader field="url" label="URL" {...SortHeaderProps} />
               </th>
               <th className="px-6 py-3 text-left">
-                <SortHeader field="createdAt" label="Created" {...SortHeaderProps} />
+                <SortHeader
+                  field="createdAt"
+                  label="Created"
+                  {...SortHeaderProps}
+                />
               </th>
               <th className="px-6 py-3 text-left">
-                <SortHeader field="updatedAt" label="Updated" {...SortHeaderProps} />
+                <SortHeader
+                  field="updatedAt"
+                  label="Updated"
+                  {...SortHeaderProps}
+                />
               </th>
               <th className="px-6 py-3 text-left">Actions</th>
             </tr>
@@ -160,7 +189,9 @@ export function LinksTable({
                 key={link.id}
                 className="border-b border-slate-700 hover:bg-slate-800 transition-colors"
               >
-                <td className="px-6 py-3 text-slate-300 font-mono">{link.id}</td>
+                <td className="px-6 py-3 text-slate-300 font-mono">
+                  {link.id}
+                </td>
                 <td className="px-6 py-3">
                   <code className="bg-slate-700 px-2 py-1 rounded text-blue-400 font-mono">
                     {link.shortCode}
@@ -175,10 +206,15 @@ export function LinksTable({
                         className="bg-slate-700 text-blue-400 px-2 py-1 rounded w-full outline-none border border-slate-600 focus:border-blue-400"
                         value={editingUrl}
                         onChange={(e) => setEditingUrl(e.target.value)}
-                        onKeyDown={(e) => { if (e.key === 'Enter') saveEdit(link.id); if (e.key === 'Escape') cancelEdit(); }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') saveEdit(link.id);
+                          if (e.key === 'Escape') cancelEdit();
+                        }}
                         autoFocus
                       />
-                      {urlError && <p className="text-red-400 text-xs mt-1">{urlError}</p>}
+                      {urlError && (
+                        <p className="text-red-400 text-xs mt-1">{urlError}</p>
+                      )}
                     </div>
                   ) : (
                     <a
@@ -192,10 +228,12 @@ export function LinksTable({
                   )}
                 </td>
                 <td className="px-6 py-3 text-slate-400 text-sm">
-                  {new Date(link.createdAt).toLocaleDateString()} {new Date(link.createdAt).toLocaleTimeString()}
+                  {new Date(link.createdAt).toLocaleDateString()}{' '}
+                  {new Date(link.createdAt).toLocaleTimeString()}
                 </td>
                 <td className="px-6 py-3 text-slate-400 text-sm">
-                  {new Date(link.updatedAt).toLocaleDateString()} {new Date(link.updatedAt).toLocaleTimeString()}
+                  {new Date(link.updatedAt).toLocaleDateString()}{' '}
+                  {new Date(link.updatedAt).toLocaleTimeString()}
                 </td>
                 <td className="px-6 py-3">
                   <div className="flex items-center gap-2">
@@ -244,17 +282,25 @@ export function LinksTable({
         {initialLinks.length === 0 && (
           <div className="px-6 py-12 text-center">
             <LinkIcon className="w-12 h-12 mx-auto mb-4 text-slate-600" />
-            <p className="text-slate-400">No links yet. Create one to get started!</p>
+            <p className="text-slate-400">
+              No links yet. Create one to get started!
+            </p>
           </div>
         )}
       </div>
 
-      <Dialog open={!!deletingId} onOpenChange={(open) => { if (!open) setDeletingId(null); }}>
+      <Dialog
+        open={!!deletingId}
+        onOpenChange={(open) => {
+          if (!open) setDeletingId(null);
+        }}
+      >
         <DialogContent className="bg-slate-900 border-slate-700 text-white sm:max-w-sm">
           <DialogHeader>
             <DialogTitle className="text-white">Delete link</DialogTitle>
             <DialogDescription className="text-slate-400">
-              Are you sure you want to delete this link? This action cannot be undone.
+              Are you sure you want to delete this link? This action cannot be
+              undone.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter className="flex gap-2 sm:justify-end">
@@ -302,7 +348,10 @@ export function LinksTable({
           </button>
 
           {Array.from({ length: totalPages }, (_, i) => i + 1)
-            .slice(Math.max(0, currentPage - 3), Math.min(totalPages, currentPage + 2))
+            .slice(
+              Math.max(0, currentPage - 3),
+              Math.min(totalPages, currentPage + 2),
+            )
             .map((page) => (
               <button
                 key={page}

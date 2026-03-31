@@ -24,12 +24,17 @@ export default function CreateLinkModal() {
     <Dialog open onOpenChange={() => router.back()}>
       <DialogContent className="bg-slate-900 border-slate-700 text-white sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-white">Create New Link</DialogTitle>
+          <DialogTitle className="text-2xl font-bold text-white">
+            Create New Link
+          </DialogTitle>
           <DialogDescription className="text-slate-400">
             Enter a URL to create a shortened link
           </DialogDescription>
         </DialogHeader>
-        <CreateLinkForm onCancel={() => router.back()} onSuccess={handleSuccess} />
+        <CreateLinkForm
+          onCancel={() => router.back()}
+          onSuccess={handleSuccess}
+        />
       </DialogContent>
     </Dialog>
   );

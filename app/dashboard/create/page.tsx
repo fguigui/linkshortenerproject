@@ -11,8 +11,12 @@ export default function CreateLinkPage() {
       <div className="max-w-md mx-auto">
         <div className="space-y-8">
           <div>
-            <h1 className="text-4xl font-bold text-white mb-2">Create New Link</h1>
-            <p className="text-slate-400">Enter a URL to create a shortened link</p>
+            <h1 className="text-4xl font-bold text-white mb-2">
+              Create New Link
+            </h1>
+            <p className="text-slate-400">
+              Enter a URL to create a shortened link
+            </p>
           </div>
           <CreateLinkForm
             onCancel={() => router.back()}
