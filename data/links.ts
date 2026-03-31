@@ -1,3 +1,4 @@
+import { randomBytes } from 'crypto';
 import { db } from '@/db/index';
 import { links } from '@/db/schema';
 import { eq, desc, asc, count, and } from 'drizzle-orm';
@@ -6,12 +7,7 @@ export type SortField = 'id' | 'shortCode' | 'url' | 'createdAt' | 'updatedAt';
 export type SortDirection = 'asc' | 'desc';
 
 function generateShortCode(length: number = 6): string {
-  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-  let result = '';
-  for (let i = 0; i < length; i++) {
-    result += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return result;
+  return randomBytes(length).toString('base64url').slice(0, length);
 }
 
 export async function getUserLinks(
