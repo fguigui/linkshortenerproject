@@ -13,7 +13,7 @@ export async function GET(
       return new NextResponse('Not found', { status: 404 });
     }
 
-    return NextResponse.redirect(link.url, { status: 301 });
+    return NextResponse.redirect(link.url, { status: 302 });
   } catch {
     return new NextResponse('Internal server error', { status: 500 });
   }

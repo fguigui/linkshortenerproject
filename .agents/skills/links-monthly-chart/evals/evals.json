@@ -1,0 +1,23 @@
+{
+  "skill_name": "links-monthly-chart",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Generate a bar chart showing how many links were created each month over the past year. Save it as links_per_month.png.",
+      "expected_output": "A PNG file named links_per_month.png in the current directory showing a bar chart with 12 monthly bars. The x-axis should show month labels (e.g. Apr 2025 … Mar 2026) and the y-axis should show integer link counts.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I want to see the link creation stats for this project plotted as a chart. Export it to reports/link_stats.png.",
+      "expected_output": "A PNG at reports/link_stats.png containing a 12-month bar chart. The reports/ directory should be created automatically if it doesn't exist.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Show me how active the link shortener has been month by month for the past year.",
+      "expected_output": "A bar chart PNG (default output path) covering the 12-month window. Each bar is labelled with its count and zero-count months should still appear as empty bars rather than being omitted.",
+      "files": []
+    }
+  ]
+}
