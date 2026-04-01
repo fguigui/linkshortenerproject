@@ -27,7 +27,7 @@ export async function createLinkAction(url: string): Promise<ActionResult> {
 
     const parsed = urlSchema.safeParse(url);
     if (!parsed.success) {
-      return { success: false, error: parsed.error.errors[0].message };
+      return { success: false, error: parsed.error.issues[0].message };
     }
 
     await createLink(userId, parsed.data);

@@ -32,7 +32,7 @@ export default async function DashboardPage({
     data: links,
     total,
     totalPages,
-  } = await getUserLinks(userId, page, 20, sortBy, sortDirection);
+  } = await getUserLinks(userId, page, 15, sortBy, sortDirection);
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-black via-slate-900 to-black py-8 px-4">
